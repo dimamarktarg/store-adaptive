@@ -126,8 +126,10 @@
   &__phones {
   }
   &__favorite {
+    font-size: rem(27);
   }
   &__cart {
+    flex: 0 0 auto;
   }
 }
 
@@ -144,7 +146,7 @@
     line-height: math.div(22, 18);
   }
   &__arrow {
-    color: #e8aa31;
+    color: $mainOrang;
     font-size: rem(10);
     transition: transform 0.3s ease 0s;
     margin: 0px 0px 0px em(17, 16);
@@ -172,18 +174,46 @@
     margin: rem(3) 0px 0px 0px;
     font-weight: 700;
     line-height: math.div(22, 18);
-    color: #e8aa31;
+    color: $mainOrang;
   }
 }
 
 .cart-header {
+  display: flex;
+  align-items: center;
+  column-gap: rem(15);
   &__icon {
+    flex: 0 0 rem(37);
+    font-size: rem(35);
+    position: relative;
+    span {
+      position: absolute;
+      width: rem(16);
+      height: rem(16);
+      top: 0;
+      right: 0;
+      background-color: $mainOrang;
+      font-size: rem(11);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
   }
   &__body {
+    font-size: rem(16);
+    line-height: math.div(20, 16);
+    flex: 0 0 auto;
   }
   &__summ {
+    font-weight: 500;
+    &:not(:last-child) {
+      margin-bottom: em(5, 16);
+    }
   }
   &__link {
+    color: $mainOrang;
   }
 }
 
