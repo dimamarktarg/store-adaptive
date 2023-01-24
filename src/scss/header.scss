@@ -12,113 +12,202 @@
   background-color: $mainDarkColor;
   color: #fff;
   padding: rem(10) 0;
-}
-.top-header__container {
-  display: flex;
-  align-items: center;
-  gap: rem(20);
-  min-height: rem(50);
-}
-.top-header__menu {
-  flex: 1 1 auto;
-}
-.top-header__user {
-  display: inline-flex;
-  align-items: center;
-  font-weight: 600;
-  line-height: math.div(22, 18);
-  &::before {
-    font-size: rem(28);
-    margin-right: em(15, 28);
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: rem(20);
+    min-height: rem(50);
+    @media (max-width: $tablet) {
+      gap: rem(30);
+    }
   }
-  @media (any-hover: hover) {
-    &:hover {
+  &__menu {
+    flex: 1 1 auto;
+  }
+  &__user {
+    position: relative;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    line-height: math.div(22, 18);
+    gap: em(15, 28);
+    &::before {
+      font-size: rem(28);
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+    @media (max-width: $tablet) {
+      &::before {
+        font-size: rem(35);
+      }
       span {
+        display: none;
+      }
+    }
+  }
+}
+
+.menu-top-header {
+  &__list {
+    display: flex;
+    row-gap: 5px;
+    @include adaptiveValue("column-gap", 60, 20);
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      row-gap: 25px;
+    }
+  }
+  &__item {
+    &_catalog {
+      @media (min-width: $tablet) {
+        display: none;
+      }
+    }
+  }
+  &__link {
+    font-size: rem(16);
+    line-height: math.div(20, 16);
+    @media (any-hover: hover) {
+      &:hover {
         text-decoration: underline;
       }
     }
+    &_catalog {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      &::before {
+        flex: 0 0 14px;
+        height: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: rem(8);
+        transform: translateY(rem(-2)) rotate(-90deg);
+      }
+    }
+    @media (max-width: $tablet) {
+      @include adaptiveValue("font-size", 30, 20, 992, 320, 1);
+    }
+  }
+  @media (max-width: $tablet) {
+    display: none;
   }
 }
 
 //===========================================================
 
 .menu {
-}
-.menu__body {
-}
-.menu__list {
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 5px;
-  @include adaptiveValue("column-gap", 60, 20);
-}
-.menu__item {
-}
-.menu__link {
-  font-size: rem(16);
-  line-height: math.div(20, 16);
-  @media (any-hover: hover) {
-    &:hover {
-      text-decoration: underline;
+  &__body {
+    @media (max-width: $tablet) {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: -100%;
+      overflow: auto;
+      background-color: $mainDarkColor;
+      padding: rem(100) rem(15) rem(50) rem(15);
+      transition: left 0.3s ease 0s;
+      z-index: 4;
+      &::before {
+        content: "";
+        position: fixed;
+        width: 100%;
+        height: 70px;
+        left: -100%;
+        top: 0;
+        background-color: $mainDarkColor;
+      }
+      .menu-open & {
+        left: 0;
+        &::before {
+          left: 0;
+        }
+      }
     }
   }
+  @media (max-width: $tablet) {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
-
 // ================================================
 
 .body-header {
   padding: rem(10) 0;
   background-color: #ecf1f2;
-}
-.body-header__container {
-  display: flex;
-  min-height: rem(70);
-  align-items: center;
-}
-.body-header__logo {
-  @extend %ic;
-  @extend ._icon-logo;
-  font-size: rem(42);
-  color: $mainDarkColor;
-}
-.body-header__search {
-  flex: 1 1 auto;
-  padding-right: rem(20);
-  @include adaptiveValue("padding-left", 158, 20);
-}
-.body-header {
-  &__actions {
+  &__container {
+    display: flex;
+    min-height: rem(70);
+    align-items: center;
+    @media (max-width: $tablet) {
+      justify-content: space-between;
+    }
+  }
+  &__logo {
+    @extend %ic;
+    @extend ._icon-logo;
+    font-size: rem(42);
+    color: $mainDarkColor;
+  }
+  &__search {
+    flex: 1 1 auto;
+    @media (min-width: $tablet) {
+      padding-right: rem(20);
+    }
+    @media (min-width: $mobileSmall) {
+      @include adaptiveValue("padding-left", 158, 20, 1620, 1250, 1);
+    }
+  }
+  & {
+    &__actions {
+    }
   }
 }
+
 .search-header {
-  max-width: rem(377);
   background-color: rgba(7, 7, 7, 0.03);
   border-radius: 3px;
   position: relative;
   border: rem(1) solid rgba(4, 4, 4, 0.05);
-}
-.search-header__button {
-  position: absolute;
-  background-color: transparent;
-  height: rem(41);
-  width: rem(41);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: rem(8);
-  font-size: rem(16);
-  color: rgba(0, 0, 0, 0.5);
-}
-.search-header__input {
-  width: 100%;
-  background-color: transparent;
-  border-radius: rem(3);
-  height: rem(41);
-  color: $mainColor;
-  padding: 0px rem(20) 0px rem(50);
-  &::placeholder {
+  @media (min-width: $tablet) {
+    max-width: rem(377);
+  }
+  &__button {
+    position: absolute;
+    background-color: transparent;
+    height: rem(41);
+    width: rem(41);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: rem(8);
+    font-size: rem(16);
     color: rgba(0, 0, 0, 0.5);
+  }
+  &__input {
+    width: 100%;
+    background-color: transparent;
+    border-radius: rem(3);
+    height: rem(41);
+    color: $mainColor;
+    padding: 0px rem(20) 0px rem(50);
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  @media (max-width: $mobileSmall) {
+    background-color: #fff;
   }
 }
 
@@ -127,12 +216,15 @@
 .actions-header {
   display: flex;
   align-items: center;
-  column-gap: rem(30);
+  @media (max-width: $tablet) {
+    display: none;
+  }
+  @include adaptiveValue("column-gap", 30, 20, 1620, 1000, 1);
   &__location {
     display: inline-flex;
     align-items: center;
     font-weight: 600;
-    margin: 0px rem(25) 0px 0px;
+    @include adaptiveValue("margin-right", 25, 0, 1620, 1400, 1);
     &::before {
       font-size: rem(24);
       margin: 0px em(10, 24) 0px 0px;
@@ -148,6 +240,8 @@
   &__phones {
   }
   &__favorite {
+    position: relative;
+    z-index: 5;
     font-size: rem(27);
   }
   &__cart {
@@ -156,6 +250,8 @@
 }
 
 .phones-header {
+  position: relative;
+  z-index: 5;
   &__items {
   }
   &__item {
@@ -166,6 +262,23 @@
     font-weight: 600;
     white-space: nowrap;
     line-height: math.div(22, 18);
+    &::before {
+      @extend %ic;
+      @extend ._icon-footer-phone;
+      display: none;
+    }
+    @media (max-width: $tablet) {
+      font-size: rem(25);
+    }
+    @media (max-width: $mobileSmall) {
+      &::before {
+        display: block;
+        font-size: rem(31);
+      }
+      span {
+        display: none;
+      }
+    }
   }
   &__arrow {
     color: $mainOrang;
@@ -174,6 +287,9 @@
     margin: 0px 0px 0px em(17, 16);
     &._spoller-active {
       transform: rotate(-180deg);
+    }
+    @media (max-width: $tablet) {
+      display: none;
     }
   }
   &__list {
@@ -192,6 +308,9 @@
         margin-bottom: em(8, 18);
       }
     }
+    @media (max-width: $tablet) {
+      display: none;
+    }
   }
   &__callback {
     margin: rem(3) 0px 0px 0px;
@@ -203,6 +322,9 @@
         text-decoration: underline;
       }
     }
+    @media (max-width: $tablet) {
+      display: none;
+    }
   }
 }
 
@@ -210,6 +332,8 @@
   display: flex;
   align-items: center;
   column-gap: rem(15);
+  position: relative;
+  z-index: 5;
   &__icon {
     flex: 0 0 rem(37);
     font-size: rem(35);
@@ -233,6 +357,9 @@
     font-size: rem(16);
     line-height: math.div(20, 16);
     flex: 0 0 auto;
+    @media (max-width: em(1250)) {
+      display: none;
+    }
   }
   &__summ {
     font-weight: 500;
@@ -260,25 +387,52 @@
   }
   &__menu {
   }
+  @media (max-width: $mobileSmall) {
+    padding: rem(20) 0;
+  }
 }
 
 .menu-catalog {
   &__list {
     display: flex;
-    gap: rem(10);
+    column-gap: rem(10);
     justify-content: space-between;
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      row-gap: rem(25);
+    }
   }
   &__item {
   }
   &__link {
-    min-height: rem(70);
     display: flex;
-    padding: 0px rem(10);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     position: relative;
     transition: color 0.3s ease 0s;
+    &[data-parent] {
+      &::before {
+        @extend %ic;
+        @extend ._icon-arrow-bottom;
+        display: none;
+        @media (max-width: $tablet) {
+          transform: translateY(rem(6)) rotate(-90deg);
+          display: block;
+          font-size: rem(10);
+        }
+      }
+      @media (max-width: $tablet) {
+        display: flex;
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+    }
+    @media (min-width: $tablet) {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: rem(70);
+      padding: 0px rem(10);
+    }
     &::after {
       content: "";
       opacity: 0;
@@ -300,12 +454,17 @@
         }
       }
     }
-    &._sub-menu-active {
-      color: $mainOrang;
-      &::after {
-        opacity: 1;
-        visibility: visible;
+    @media (min-width: $tablet) {
+      &._sub-menu-active {
+        color: $mainOrang;
+        &::after {
+          opacity: 1;
+          visibility: visible;
+        }
       }
+    }
+    @media (max-width: $tablet) {
+      @include adaptiveValue("font-size", 30, 20, 992, 320, 1);
     }
   }
   &__sub-menu {
@@ -314,9 +473,72 @@
     top: 100%;
     background-color: $mainDarkColor;
   }
+  &__back {
+    display: none;
+    @media (max-width: $tablet) {
+      display: inline-flex;
+      align-items: center;
+      @include adaptiveValue("font-size", 30, 20, 992, 320, 1);
+      &:not(:last-child) {
+        margin-bottom: em(65, 30);
+      }
+      &::before {
+        @include adaptiveValue("font-size", 16, 8, 992, 320, 1);
+        transform: rotate(90deg);
+        margin: em(0, 2) em(20, 30) 0px 0px;
+      }
+    }
+  }
+  @media (max-width: $tablet) {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: $mainDarkColor;
+    padding: rem(25) rem(15) rem(50) rem(15);
+    transition: left 0.3s ease 0s;
+    .catalog-open & {
+      left: 0;
+      z-index: 6;
+    }
+  }
 }
 
 .sub-menu-catalog {
+  @media (max-width: $tablet) {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: $mainDarkColor;
+    padding: rem(25) rem(15) rem(50) rem(15);
+    transition: left 0.3s ease 0s;
+    .sub-menu-open & {
+      display: block;
+      left: 0;
+      z-index: 6;
+    }
+  }
+  &__back {
+    display: none;
+    @media (max-width: $tablet) {
+      display: inline-flex;
+      align-items: center;
+      @include adaptiveValue("font-size", 30, 20, 992, 320, 1);
+      &:not(:last-child) {
+        margin-bottom: em(65, 30);
+      }
+      &::before {
+        @include adaptiveValue("font-size", 16, 8, 992, 320, 1);
+        transform: rotate(90deg);
+        margin: em(0, 2) em(20, 30) 0px 0px;
+      }
+    }
+  }
   &__block {
     display: none;
     @for $var from 1 to 6 {
@@ -327,6 +549,9 @@
     }
     &._sub-menu-open {
       display: grid;
+      @media (max-width: $tablet) {
+        display: block;
+      }
     }
   }
   &__container {
@@ -335,11 +560,18 @@
   &__category {
     font-size: rem(16);
     line-height: math.div(20, 16);
-    font-weight: 700;
-    padding: rem(30) rem(15) rem(30) 0;
     @media (any-hover: hover) {
       &:hover {
         text-decoration: underline;
+      }
+    }
+    @media (min-width: $tablet) {
+      font-weight: 700;
+      padding: rem(30) rem(15) rem(30) 0;
+    }
+    @media (max-width: $tablet) {
+      &:not(:last-child) {
+        margin-bottom: em(25, 16);
       }
     }
   }
@@ -350,6 +582,9 @@
     padding: rem(30) rem(15) rem(30) 0;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    @media (max-width: $tablet) {
+      display: none;
+    }
   }
   &__item {
   }
@@ -362,8 +597,14 @@
       }
     }
   }
+  &__link-category {
+    @include adaptiveValue("font-size", 30, 20, 992, 320);
+  }
   &__footer {
     padding: rem(30) rem(15) rem(30) 0;
+    @media (max-width: $tablet) {
+      display: none;
+    }
   }
   &__all {
     font-size: rem(16);
@@ -381,14 +622,13 @@
 //Burger
 
 .icon-menu {
-  display: none;
-  @media (max-width: $mobile) {
+  @media (max-width: $tablet) {
     display: block;
     position: relative;
-    flex: 0 0 30px;
-    height: rem(18);
+    width: rem(40);
+    height: rem(22.5);
     cursor: pointer;
-    z-index: 5;
+    z-index: 10;
     span,
     &::before,
     &::after {
