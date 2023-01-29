@@ -4,11 +4,14 @@
   &__container {
   }
   &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     &:not(:last-child) {
       @include adaptiveValue("margin-bottom", 50, 30);
+    }
+    @media (min-width: $mobile) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: rem(20);
     }
   }
   &__title {
@@ -44,62 +47,17 @@
   }
   &__swiper {
     &:not(:last-child) {
-      margin-bottom: rem(50);
+      @include adaptiveValue("margin-bottom", 50, 30);
     }
   }
   &__slide {
   }
   &__dotts {
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: center;
-    transform: translate(0px, 10%);
-    margin: 0px auto;
-    overflow: hidden;
-    .swiper-pagination-bullet {
-      margin: 0px rem(7.5);
-      cursor: pointer;
-      height: rem(30);
-      width: rem(18);
-      position: relative;
-      transition: all 0.3s ease 0s;
-      &::after {
-        content: "";
-        height: rem(2);
-        position: absolute;
-        width: 100%;
-        top: 50%;
-        transform: translate(0px, -50%);
-        background-color: #898989;
-      }
-      &::before {
-        content: "";
-        background-color: $mainOrang;
-        width: rem(10);
-        height: rem(10);
-        top: 50%;
-        left: 0;
-        border-radius: 50%;
-        transform: translate(0px, -50%);
-        position: absolute;
-        opacity: 0;
-      }
-    }
-    .swiper-pagination-bullet-active {
-      width: rem(30);
-      &::after {
-        background-color: $mainOrang;
-      }
-      &::before {
-        opacity: 1;
-        transition: left 3s linear 0s;
-        left: rem(20);
-      }
-    }
   }
 }
 
 .product-card {
+  background-color: #fff;
   display: grid;
   height: 100%;
   grid-template-rows: auto 1fr;
@@ -202,5 +160,145 @@
   &__size {
   }
   &__materials {
+    text-align: right;
+  }
+}
+
+//===================================================================
+
+.dots {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  transform: translate(0px, 10%);
+  margin: 0px auto;
+  overflow: hidden;
+  .swiper-pagination-bullet {
+    margin: 0px rem(7.5);
+    cursor: pointer;
+    height: rem(30);
+    width: rem(18);
+    position: relative;
+    transition: all 0.3s ease 0s;
+    &::after {
+      content: "";
+      height: rem(2);
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translate(0px, -50%);
+      background-color: #898989;
+    }
+    &::before {
+      content: "";
+      background-color: $mainOrang;
+      width: rem(10);
+      height: rem(10);
+      top: 50%;
+      left: 0;
+      border-radius: 50%;
+      transform: translate(0px, -50%);
+      position: absolute;
+      opacity: 0;
+    }
+  }
+  .swiper-pagination-bullet-active {
+    width: rem(30);
+    &::after {
+      background-color: $mainOrang;
+    }
+    &::before {
+      opacity: 1;
+      transition: left 3s linear 0s;
+      left: rem(20);
+    }
+  }
+}
+
+//===================================================================
+
+.products-new {
+  background: url("@img/new-products/bg.png") top / cover no-repeat;
+  @include adaptiveValue("padding-top", 55, 20);
+  @include adaptiveValue("padding-bottom", 55, 20);
+  &__container {
+    display: grid;
+    row-gap: rem(40);
+    @media (min-width: $tablet) {
+      grid-template-columns: rem(400) 1fr;
+      align-items: start;
+    }
+  }
+  &__body {
+    @include adaptiveValue("padding-right", 70, 30, 1630, 992, 1);
+    // &::before {
+    //   content: "";
+    //   background: url("@img/new-products/bg.png") 0 0 no-repeat;
+    //   height: 100%;
+    //   width: 100vw;
+    // }
+  }
+  &__title {
+    font-weight: bold;
+    font-size: rem(30);
+    color: #fff;
+    line-height: math.div(46, 30);
+    &:not(:last-child) {
+      margin-bottom: em(30, 30);
+    }
+    @media (max-width: rem(600)) {
+      padding-top: rem(50);
+    }
+  }
+  &__text {
+    font-size: rem(18);
+    line-height: math.div(27, 18);
+    letter-spacing: 0.03em;
+    color: rgba(255, 255, 255, 0.7);
+    @include adaptiveValue("margin-bottom", 60, 20);
+  }
+  &__link {
+  }
+  &__content {
+    min-width: 0;
+    @media (min-width: $tablet) {
+      padding: rem(37) 0px 0px 0px;
+    }
+  }
+  &__slider {
+  }
+  &__swiper {
+    &:not(:last-child) {
+      @include adaptiveValue("margin-bottom", 50, 20);
+    }
+  }
+  &__slide {
+  }
+  &__dotts {
+    // position: absolute;
+    // left: 55%;
+  }
+}
+
+//===================================================================
+
+.link-arrow {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  color: $mainOrang;
+  font-weight: 600;
+  font-size: rem(20);
+  &::before {
+    margin: rem(2) 0px 0px em(20, 20);
+    transform: rotate(-90deg);
+    font-size: rem(8);
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      span {
+        text-decoration: underline;
+      }
+    }
   }
 }
