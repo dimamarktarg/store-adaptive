@@ -16,7 +16,22 @@
   transition: box-shadow 0.3s ease 0s;
   @media (any-hover: hover) {
     &:hover {
-      box-shadow: 0px 4px 25px rgba(232, 170, 49, 0.63);
+      box-shadow: 0px 5px 30px rgba(232, 170, 49, 0.83);
+    }
+  }
+  &_border {
+    background-color: #fff;
+    border: 1px solid $mainOrang;
+    color: $mainOrang;
+    box-shadow: none;
+  }
+  &_black {
+    background: $mainDarkColor;
+    padding: rem(8) rem(30);
+    @media (any-hover: hover) {
+      &:hover {
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.63);
+      }
     }
   }
 }

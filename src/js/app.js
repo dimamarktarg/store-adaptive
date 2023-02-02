@@ -46,7 +46,7 @@ flsFunctions.spollers();
 Документация: https://template.fls.guru/template-docs/modul-taby.html
 Сниппет (HTML): tabs
 */
-// flsFunctions.tabs();
+flsFunctions.tabs();
 
 /*
 Модуль "показать еще"
@@ -85,13 +85,14 @@ flsForms.formSubmit(true);
 // flsForms.formSubmit();
 
 /* Модуль формы "колличество" */
-// flsForms.formQuantity();
+flsForms.formQuantity();
 
 /* Модуль звездного рейтинга */
 flsForms.formRating();
 
 /* Модуль работы с select. */
-// import './libs/select.js'
+import "./libs/select.js";
+// flsModules.select(false);
 
 /* (В работе) Модуль работы с масками.*/
 /*
@@ -109,7 +110,7 @@ flsForms.formRating();
 Документация плагина: https://refreshless.com/nouislider/
 Сниппет (HTML): range
 */
-// import "./files/forms/range.js";
+import "./files/forms/range.js";
 
 /* Модуль работы с подсказками (tippy) */
 /*

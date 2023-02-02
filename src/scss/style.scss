@@ -139,9 +139,23 @@ body {
 
 // Подключение стилей отдельных страниц
 @import "home";
+@import "catalog";
+@import "product";
 
 .page {
   &_home {
+  }
+  &__inner {
+    padding-top: rem(30);
+  }
+  &__header {
+    margin-bottom: rem(30);
+  }
+  &__title {
+  }
+  &__breadcrumbs {
+  }
+  &__container {
   }
   &__main-block {
   }
